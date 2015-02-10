@@ -40,4 +40,5 @@ gem 'spring',        group: :development
 
 group :development do
   gem 'rspec-rails'
+  gem 'zeus'
 end
