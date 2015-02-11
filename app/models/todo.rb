@@ -17,6 +17,7 @@ class Todo < ActiveRecord::Base
   validates :status, presence: true, inclusion: [0,1,2,3]
 
   has_many :events, :as => :evetable
+  has_many :comments, :as => :commentable
 
 
   after_save :create_event

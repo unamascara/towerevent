@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150211125710) do
+ActiveRecord::Schema.define(version: 20150211141359) do
 
   create_table "accesses", force: true do |t|
     t.integer  "user_id"
@@ -36,9 +36,12 @@ ActiveRecord::Schema.define(version: 20150211125710) do
     t.string   "body"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "eventsource_id"
+    t.string   "eventsource_type"
   end
 
   add_index "events", ["eventable_id", "eventable_type"], name: "index_events_on_eventable_id_and_eventable_type"
+  add_index "events", ["eventsource_id", "eventsource_type"], name: "index_events_on_eventsource_id_and_eventsource_type"
 
   create_table "projects", force: true do |t|
     t.string   "name"

@@ -88,6 +88,17 @@ RSpec.describe Event, :type => :model do
 
     end
 
+    it 'create a event when a comment is added to a todo' do
+
+      comment = Comment.create!(body:'this is good',commentable:todo)
+      comment.save!
+      event = Event.last
+      expect(event.body).to eq('commented Todo')
+
+    end
+
+
+
 
 
   end
