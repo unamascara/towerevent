@@ -41,4 +41,5 @@ gem 'spring',        group: :development
 group :development do
   gem 'rspec-rails'
   gem 'zeus'
+  gem 'database_cleaner'
 end

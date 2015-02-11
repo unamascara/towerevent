@@ -7,7 +7,7 @@ RSpec.describe Event, :type => :model do
   let(:project){Project.create!(name:'testProject',team:team)}
   describe 'event for todos' do
     it 'create a event when create a todo' do
-      todo=Todo.create!(body:'have a small talk',project:project)
+      todo=Todo.create!(body:'have a small talk',project:project,status:0)
 
       event = Event.first
       expect(event.body).to eq('created todo')
