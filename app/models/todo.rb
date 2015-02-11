@@ -46,9 +46,17 @@ class Todo < ActiveRecord::Base
             oldUser = User.find(value)
             Event.create!(body:"change assignee from #{oldUser.name} to #{self.user.name}",eventable:self)
           end
+        when 'finished_at'
+          Event.create!(body:"change finished time from #{value} to #{self.finished_at}",eventable:self) if value
       end
 
     }
+  end
+
+  def finishes
+    self.status=2
+    self.finished_at=Time.now
+    self.save!
   end
 
   def url

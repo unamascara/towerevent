@@ -28,8 +28,7 @@ RSpec.describe Event, :type => :model do
 
     it 'create a event when complete a todo' do
 
-      todo.status=2
-      todo.save!
+      todo.finishes
       event = Event.last
       expect(event.body).to eq('finished todo')
 
@@ -76,6 +75,16 @@ RSpec.describe Event, :type => :model do
 
       event = Event.last
       expect(event.body).to eq('change assignee from testUser to testUser2')
+
+    end
+
+    it 'create a event when change the assignee' do
+
+      todo.finishes
+      todo.finished_at  = Time.now
+      todo.save!
+      event = Event.last
+      expect(event.body).to match(%r{change finished time from})
 
     end
 
