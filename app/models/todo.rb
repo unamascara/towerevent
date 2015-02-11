@@ -40,7 +40,12 @@ class Todo < ActiveRecord::Base
               Event.create!(body:'removed todo',eventable:self)
           end
         when 'user_id'
-          Event.create!(body:"assign to #{self.user.name}",eventable:self) if self.user
+          if value.nil?
+            Event.create!(body:"assign to #{self.user.name}",eventable:self)
+          else
+            oldUser = User.find(value)
+            Event.create!(body:"change assignee from #{oldUser.name} to #{self.user.name}",eventable:self)
+          end
       end
 
     }
