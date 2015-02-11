@@ -39,6 +39,8 @@ class Todo < ActiveRecord::Base
             else
               Event.create!(body:'removed todo',eventable:self)
           end
+        when 'user_id'
+          Event.create!(body:"assign to #{self.user.name}",eventable:self) if self.user
       end
 
     }

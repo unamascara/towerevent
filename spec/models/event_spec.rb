@@ -56,6 +56,14 @@ RSpec.describe Event, :type => :model do
       expect(event.body).to eq('paused todo')
 
     end
+  it 'create a event when assign it to a user' do
+
+      todo.user = user
+      todo.save!
+      event = Event.last
+      expect(event.body).to eq('assign to testUser')
+
+    end
 
 
 
