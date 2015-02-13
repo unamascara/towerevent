@@ -1,6 +1,6 @@
 class Comment < ActiveRecord::Base
   belongs_to :commentable,:polymorphic => true
-
+  validates :body,presence: true
 
   after_save :create_event
 
@@ -14,6 +14,10 @@ class Comment < ActiveRecord::Base
       end
     }
 
+  end
+
+  def url
+    "comment/#{self.id}"
   end
 
 end

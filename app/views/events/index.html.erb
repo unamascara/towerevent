@@ -1,0 +1,14 @@
+<h1>Listing events</h1>
+<ul>
+  <% @events.each do |event| %>
+    <li>
+      <span class="event_body"><%= event.body %></span>
+      <a class="eventable" href="<%= event.eventable.url %>"><%= event.eventable.body%></a>
+      <% if event.eventsource %>
+          <a class="eventsource" href="<%= event.eventsource.url %>"><%= event.eventsource.body%></a>
+      <% end %>
+    </li>
+  <% end %>
+</ul>
+
+

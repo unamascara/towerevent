@@ -42,4 +42,5 @@ group :development do
   gem 'rspec-rails'
   gem 'zeus'
   gem 'database_cleaner'
+  gem 'capybara'
 end
