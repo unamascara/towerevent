@@ -74,7 +74,7 @@ RSpec.describe Event, :type => :model do
 
     end
 
-    it 'create a event when change the assignee' do
+    it 'create a event when change the finished time' do
 
       todo.finishes
       todo.finished_at  = Time.now
