@@ -1,9 +1,19 @@
 def team
- @team ||= Team.create!(name:'testTeam')
+  return if @team
+
+
+  team= Team.new(name:'testTeam')
+  teamuser = Teamuser.new(team:team,user:user,role:role)
+  teamuser.save!
+  @team=team
+
 end
 
+def role
+  @role ||=Role.create!(name:'Admin')
+end
 def user
-  @user ||=User.create!(name:'testUser',team:team)
+  @user ||=User.create!(name:'testUser')
 end
 
 def project

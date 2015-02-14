@@ -65,7 +65,7 @@ RSpec.describe Event, :type => :model do
       todo.user = user
       todo.save!
 
-      user2 = User.create!(name:'testUser2',team:team)
+      user2 = User.create!(name:'testUser2')
       todo.user = user2
       todo.save!
 

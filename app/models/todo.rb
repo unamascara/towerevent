@@ -1,4 +1,6 @@
 class Todo < ActiveRecord::Base
+  belongs_to :todolist
+  acts_as_list scope: :todolist
 
   belongs_to :project
   validates_associated :project

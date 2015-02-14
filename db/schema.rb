@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150211141359) do
+ActiveRecord::Schema.define(version: 20150214141855) do
 
   create_table "accesses", force: true do |t|
     t.integer  "user_id"
@@ -50,7 +50,31 @@ ActiveRecord::Schema.define(version: 20150211141359) do
     t.datetime "updated_at"
   end
 
+  create_table "roles", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "teams", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "teamusers", force: true do |t|
+    t.integer  "team_id"
+    t.integer  "user_id"
+    t.integer  "role_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "teamusers", ["role_id"], name: "index_teamusers_on_role_id"
+  add_index "teamusers", ["team_id"], name: "index_teamusers_on_team_id"
+  add_index "teamusers", ["user_id"], name: "index_teamusers_on_user_id"
+
+  create_table "todolists", force: true do |t|
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -65,6 +89,8 @@ ActiveRecord::Schema.define(version: 20150211141359) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.datetime "finished_at"
+    t.integer  "todolist_id"
+    t.integer  "position"
   end
 
   create_table "users", force: true do |t|
