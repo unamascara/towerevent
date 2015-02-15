@@ -7,6 +7,8 @@ class Event < ActiveRecord::Base
   belongs_to :eventsource,:polymorphic => true
 
 
+  belongs_to :creator, class_name:"User",foreign_key:'creator_id'
+
   def body
     case eventable.class.to_s
       when 'Todo'
@@ -27,10 +29,10 @@ class Event < ActiveRecord::Base
             end
           when 'user_id'
             if old_value.nil?
-              "assign to #{eventable.user.name}"
+              "assign to #{eventable.assignee.name}"
             else
               oldUser = User.find(old_value)
-              "change assignee from #{oldUser.name} to #{eventable.user.name}"
+              "change assignee from #{oldUser.name} to #{eventable.assignee.name}"
             end
           when 'finished_at'
             "change finished time from #{old_value} to #{new_value}"

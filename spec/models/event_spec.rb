@@ -53,7 +53,7 @@ RSpec.describe Event, :type => :model do
     end
     it 'create a event when assign it to a user' do
 
-      todo.user = user
+      todo.assignee = user
       todo.save!
       event = Event.last
       expect(event.body).to eq('assign to testUser')
@@ -62,11 +62,11 @@ RSpec.describe Event, :type => :model do
 
     it 'create a event when change the assignee' do
 
-      todo.user = user
+      todo.assignee= user
       todo.save!
 
       user2 = User.create!(name:'testUser2')
-      todo.user = user2
+      todo.assignee = user2
       todo.save!
 
       event = Event.last
