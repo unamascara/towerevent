@@ -4,20 +4,6 @@ class Comment < ActiveRecord::Base
 
   has_many :attachments, :as => :attachable
 
-  after_save :create_event
-
-  def create_event
-
-    self.changed_attributes.each {|attr,value|
-
-      case attr
-        when 'commentable_id'
-          Event.create!(changed_attr:'comments',eventable:self.commentable,eventsource:self)
-      end
-    }
-
-  end
-
   def url
     "comment/#{self.id}"
   end

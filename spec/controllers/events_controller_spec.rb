@@ -6,7 +6,12 @@ RSpec.describe EventsController, :type => :feature do
 
     it 'shows event without event source' do
       todo
+      visit 'todos/1/start'
       visit '/events'
+
+      user_name = find('.event_creator:first-child').text
+      expect(user_name).to eq(user.name)
+      expect(page).to have_selector('.event_body')
       expect(page).to have_selector('.event_body')
       expect(page).to have_selector('.eventable')
     end

@@ -3,6 +3,7 @@ class Todo < ActiveRecord::Base
   acts_as_list scope: :todolist
 
   belongs_to :project
+  validates_presence_of :project
   validates_associated :project
 
   belongs_to :assignee, class_name:"User",foreign_key:'user_id'
@@ -20,19 +21,6 @@ class Todo < ActiveRecord::Base
 
   has_many :events, :as => :evetable
   has_many :comments, :as => :commentable
-
-
-  after_save :create_event
-
-  def create_event
-
-    self.changed_attributes.select{|attr|
-      ['id','status','user_id','finished_at'].include?(attr)
-    }.each {|attr,value|
-
-      Event.create!(eventable:self,changed_attr:attr,old_value:value,new_value:self.send(attr))
-    }
-  end
 
   def finishes
     self.status=2

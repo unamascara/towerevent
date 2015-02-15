@@ -28,7 +28,7 @@ class Event < ActiveRecord::Base
                 'removed todo'
             end
           when 'user_id'
-            if old_value.nil?
+            if old_value==''
               "assign to #{eventable.assignee.name}"
             else
               oldUser = User.find(old_value)

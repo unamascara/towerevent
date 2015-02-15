@@ -1,6 +1,16 @@
 Rails.application.routes.draw do
   resources :users
   resources :events
+  resources :todos do
+    member do
+      get :start
+      get :pause
+      get :finish
+      get :remove
+      get :assign
+      get :comment
+    end
+  end
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
