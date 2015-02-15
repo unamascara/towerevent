@@ -1,7 +1,6 @@
 def team
   return if @team
 
-
   team= Team.new(name:'testTeam')
   teamuser = Teamuser.new(team:team,user:user,role:role)
   teamuser.save!

@@ -13,12 +13,15 @@ RSpec.describe EventsController, :type => :feature do
 
     it 'shows event with event source' do
       comment = Comment.create!(body:'this is good',commentable:todo)
+      comment.attachments<<Attachment.new(name:'attachment1',url:'/files/1')
+      comment.attachments<<Attachment.new(name:'attachment2',url:'/files/2')
       comment.save!
       visit '/events'
 
       expect(page).to have_selector('.event_body')
       expect(page).to have_selector('.eventable')
       expect(page).to have_selector('.eventsource')
+      expect(page).to have_selector('.eventcontext')
 
     end
 

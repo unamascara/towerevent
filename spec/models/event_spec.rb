@@ -87,9 +87,12 @@ RSpec.describe Event, :type => :model do
     it 'create a event when a comment is added to a todo' do
 
       comment = Comment.create!(body:'this is good',commentable:todo)
+      comment.attachments<<Attachment.new(name:'attachment1',url:'/files/1')
+      comment.attachments<<Attachment.new(name:'attachment2',url:'/files/2')
       comment.save!
       event = Event.last
       expect(event.body).to eq('commented Todo')
+      expect(event.eventsource.eventContexts[1].url).to eq('/files/2')
 
     end
 
