@@ -20,5 +20,5 @@ def project
 end
 
 def todo
-  @todo ||= Todo.create!(body:'have a small talk',project:project,status:0)
+  @todo ||= Todo.create!(body:'have a small talk',project:project)
 end

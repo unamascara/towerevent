@@ -12,7 +12,7 @@ class Comment < ActiveRecord::Base
 
       case attr
         when 'commentable_id'
-          Event.create!(body:"commented #{self.commentable.class.to_s}",eventable:self.commentable,eventsource:self)
+          Event.create!(changed_attr:'comments',eventable:self.commentable,eventsource:self)
       end
     }
 

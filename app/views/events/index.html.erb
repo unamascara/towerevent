@@ -2,7 +2,7 @@
 <ul>
   <% @events.each do |event| %>
     <li>
-      <span class="event_body"><%= event.body %></span>
+      <span class="event_body"><%= event.to_s %></span>
       <a class="eventable" href="<%= event.eventable.url %>"><%= event.eventable.body%></a>
       <% if event.eventsource %>
           <a class="eventsource" href="<%= event.eventsource.url %>"><%= event.eventsource.body%></a>
